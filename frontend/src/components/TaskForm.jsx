@@ -5,7 +5,11 @@ function TaskForm({fetchTasks}) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('Low');
-
+  
+  const [counter, setCounter] = useState(0);
+  const incrementCounter = () => {
+      setCounter(counter + 1);
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTask = { title, description, priority };
@@ -43,7 +47,8 @@ function TaskForm({fetchTasks}) {
         <option value="Medium">Medium</option>
         <option value="High">High</option>
       </select>
-      <button className='btn btn-primary' type="submit">Add Task</button>
+      <button onClick={incrementCounter} className='btn btn-primary' type="submit">Add Task</button> {/* this is here just as an example */}
+      <p>Counter: {counter}</p>
     </form>
   );
 }

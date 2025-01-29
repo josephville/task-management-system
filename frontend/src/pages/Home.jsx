@@ -15,17 +15,23 @@ function Home() {
                                           // the first element in the returned array, tasks, represents the current state
                                           // the second element in the returned array, setTasks, is a function that allows you to update the state
 
-  const fetchTasks = () => {
-    fetch('http://localhost:5213/api/tasks', {
-      headers: { 
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      
-    })
-      .then((response) => response.json())
-      .then((data) => setTasks(data))
-      .catch((error) => console.error('Error fetching tasks:', error));
+  const fetchTasks = async () => {
+    try {
+      const response = await fetch('http://localhost:5213/api/tasks', {
+        headers: { 
+          'Content-Type': 'application/json'
+          //'Access-Control-Allow-Origin': '*'
+        },
+      });
+
+      if(!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      const data = await response.json();
+      setTasks(data);
+    } catch(error) { 
+      console.error('Error fetching tasks:', error);
+    }
   };
 
   const greeting = "Howdy";

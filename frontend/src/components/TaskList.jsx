@@ -1,23 +1,16 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 
-function TaskList({tasks}) { // the curly braces are used to destructure the props object
-    const [counter, setCounter] = useState(0);
-    const incrementCounter = () => {
-        setCounter(counter + 1);
-    }
-
+const TaskList = ({tasks}) => { // the curly braces are used to destructure the props object
     return (
-        <div>
-            {incrementCounter}
+        <>
             <ul>
                 {tasks.map((task) => (
                     <li key={task.id}>
-                        {counter}<strong>{task.title}</strong>: {task.description} - Priority: {task.priority}
+                        <strong>{task.title}</strong>: {task.description} - Priority: {task.priority}
                     </li>
                 ))}
             </ul>
-        </div>
+        </>
     );
 }
 
@@ -32,4 +25,9 @@ TaskList.propTypes = {
     ).isRequired,
 };
 
+//const TaskListMem = React.memo(TaskList); // only use this when it's faster to render the component again than to compare the props
+                                          // is it faster here? probably not, but it's a good example
+                                          // refer to profiler tab in dev tools to see if it's worth it
+
 export default TaskList;
+//export { TaskListMem };
