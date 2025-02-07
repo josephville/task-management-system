@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import Banner from '../components/banner';
+import Banner from '../components/Banner';
 import CreateTask from './CreateTask';
 import TaskList from '../components/TaskList';
 
@@ -37,20 +37,19 @@ function Home() {
     }
   };
 
-  const greeting = "Howdy";
-
   useEffect(() => { // useEffect is a hook that allows you to run side effects in function components
     fetchTasks();
     counter.current++;
   }, []);
 
   return (
-    <div id="home">
-      <div>{greeting}</div>
-      <Banner>Task Management System</Banner>
-      <CreateTask fetchTasks={fetchTasks}/>
-      <TaskList tasks={tasks}/>
-    </div>
+    <>
+      <div id="home">
+        <Banner>Task Management System</Banner>
+        <CreateTask fetchTasks={fetchTasks}/>
+        <TaskList tasks={tasks}/>
+      </div>
+    </>
   );
 }
 
