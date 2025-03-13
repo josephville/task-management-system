@@ -8,6 +8,7 @@ namespace TaskManagementSystem.Models
         public string? Status { get; set; } // E.g., To Do, In Progress, Done
         public string? Priority { get; set; } // E.g., Low, Medium, High
         public DateTime DueDate { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
 
