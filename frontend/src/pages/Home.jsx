@@ -47,7 +47,7 @@ function Home() {
       <div id="home">
         <Banner>Task Management System</Banner>
         <CreateTask fetchTasks={fetchTasks}/>
-        <TaskList tasks={tasks}/>
+        <TaskList tasks={tasks} fetchTasks={fetchTasks}/>
       </div>
     </>
   );

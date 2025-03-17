@@ -47,7 +47,7 @@ function TaskForm({fetchTasks}) {
         <option value="Medium">Medium</option>
         <option value="High">High</option>
       </select>
-      <button onClick={incrementCounter} className='btn btn-primary' type="submit">Add Task</button> {/* this is here just as an example */}
+      <button onClick={incrementCounter} className='btn btn-primary' type="submit">Add Task</button>
       <p>Counter: {counter}</p>
     </form>
   );
