@@ -1,3 +1,14 @@
+/*
+border - line around the element
+margin - space outside the border
+padding - space inside the border
+
+classic box model - padding and border are added to the width and height of the element
+box sizing - border and padding are rendered inside the box. Recommended bc the math 
+            doesn't tend to get in your way as you're designing the layout.
+            use the "box-sizing: border-box" rule
+*/
+
 .logo {
     height: 150px;
     cursor: pointer;
@@ -7,4 +18,8 @@
     font-style: italic;
     font-size: x-large;
     color: coral;
+}
+
+.h1 {
+    color: #39f;
 }

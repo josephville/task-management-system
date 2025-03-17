@@ -1,11 +1,37 @@
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 
-const TaskList = ({tasks}) => { // the curly braces are used to destructure the props object
+const TaskList = ({tasks, fetchTasks}) => { // the curly braces are used to destructure the props object
+    const handleDelete = async (taskId) => {
+        try {
+            const response = await fetch(`http://localhost:5213/api/tasks/${taskId}`, {
+                method: 'DELETE',
+                headers: { 
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+
+            fetchTasks();
+        } catch(error) {
+            console.error('Error deleting task:', error);
+        }
+    };
+    
     return (
         <>
             <ul>
                 {tasks.map((task) => (
                     <li key={task.id}>
+                        {/* <button>Reorder</button> */}
+                        <button type="delete" onClick={() => handleDelete(task.id)}>
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                        {/* <button><FontAwesomeIcon icon={faEdit} /></button> */}
                         <strong>{task.title}</strong>: {task.description} - Priority: {task.priority}
                     </li>
                 ))}
@@ -23,6 +49,7 @@ TaskList.propTypes = {
             priority: PropTypes.string.isRequired,
         })
     ).isRequired,
+    fetchTasks: PropTypes.func.isRequired,
 };
 
 //const TaskListMem = React.memo(TaskList); // only use this when it's faster to render the component again than to compare the props

@@ -1,0 +1,6 @@
+# ignore all .log files
+*.log
+
+# ignore ALL files in ANY directory named as follows
+bin/
+obj/
