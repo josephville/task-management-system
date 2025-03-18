@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Task from './Task';
 
-const TaskList = ({tasks}) => { // the curly braces are used to destructure the props object
+const TaskList = ({tasks, fetchTasks}) => { // the curly braces are used to destructure the props object
     return (
         <>
             <ul>
@@ -12,6 +12,7 @@ const TaskList = ({tasks}) => { // the curly braces are used to destructure the 
                             title={task.title} 
                             description={task.description}
                             priority={task.priority}
+                            fetchTasks={fetchTasks}
                         />
                     </li>
                 ))}

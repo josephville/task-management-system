@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faGripVertical, faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
-const Task = (props, {fetchTasks}) => {
-    const handleDelete = async (taskId) => {
+const Task = (props) => {
+    const handleDelete = async () => {
         try {
-            const response = await fetch(`http://localhost:5213/api/tasks/${taskId}`, {
+            const response = await fetch(`http://localhost:5213/api/tasks/${props.id}`, {
                 method: 'DELETE',
                 headers: { 
                     'Content-Type': 'application/json'
@@ -16,7 +16,7 @@ const Task = (props, {fetchTasks}) => {
                 throw new Error(`HTTP error: ${response.status}`);
             }
 
-            fetchTasks();
+            props.fetchTasks();
         } catch(error) {
             console.error('Error deleting task:', error);
         }
@@ -29,6 +29,9 @@ const Task = (props, {fetchTasks}) => {
                 <FontAwesomeIcon icon={faTrashAlt} />
             </button>
             <button><FontAwesomeIcon icon={faEdit} /></button>
+            <button type="drag">
+                <FontAwesomeIcon icon={faGripVertical} />
+            </button>
             <strong>{props.title}</strong>: {props.description} - Priority: {props.priority}
         </>
     );
